@@ -49,7 +49,7 @@ const SearchBar = ({ dark, setCountries, data, region }) => {
       />
 
       <select
-        className={`p-2 px-4 rounded
+        className={`p-2 px-4 rounded cursor-pointer
       ${dark ? "bg-gray-500 text-white" : "bg-gray-200 text-[#1E2939]"}
       `}
         onChange={(e) => handleResionChange(e)}

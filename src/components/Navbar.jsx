@@ -13,7 +13,7 @@ const Navbar = ({ dark, setDark }) => {
           setDark(!dark);
           localStorage.setItem("dark", !dark);
         }}
-        className={`flex items-center gap-2 p-2 rounded ${
+        className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
           dark ? "bg-gray-500 text-white" : "bg-gray-200 text-[#1E2939]"
         }`}
       >
