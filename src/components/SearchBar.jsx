@@ -7,14 +7,15 @@ const SearchBar = ({ dark, countries, setCountries, data, region }) => {
   const [subRegion, setSubRegion] = useState([]);
   const [selectedSubRegion, setSelectedSubRegion] = useState("none");
   const [sort, setSort] = useState(false);
+  const [sortBy, setSortBy] = useState("population");
 
   useEffect(() => {
     setCountries((prevState) =>
       sort
-        ? [...prevState].sort((a, b) => a.population - b.population)
-        : [...prevState].sort((a, b) => b.population - a.population)
+        ? [...prevState].sort((a, b) => a[sortBy] - b[sortBy])
+        : [...prevState].sort((a, b) => b[sortBy] - a[sortBy])
     );
-  }, [sort]);
+  }, [sort, sortBy]);
 
   useEffect(() => {
     if (selectedRegion !== "none") {
@@ -89,6 +90,17 @@ const SearchBar = ({ dark, countries, setCountries, data, region }) => {
             handleChange(e.target.value);
           }}
         />
+
+        <select
+          className={`flex mb-2 mr-2 sm:mb-0 items-center justify-center gap-2 p-2 rounded cursor-pointer ${
+            dark ? "bg-gray-500 text-white" : "bg-gray-200 text-[#1E2939]"
+          }`}
+          onChange={(e) => setSortBy(e.target.value)}
+        >
+          <option value="population">Sort By</option>
+          <option value="population">Population</option>
+          <option value="area">Area</option>
+        </select>
 
         <button
           onClick={() => {

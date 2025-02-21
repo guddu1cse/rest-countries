@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useContext } from "react";
 import Navbar from "./components/Navbar";
 import { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
