@@ -44,6 +44,7 @@ const App = () => {
         setCountries={setCountries}
         data={data}
         region={region}
+        countries={countries}
       />
       <Cards countries={countries} dark={dark} />
     </div>
