@@ -124,7 +124,7 @@ const SearchBar = ({ dark, countries, setCountries, data, region }) => {
           ))}
         </select>
 
-        {/* sub region options */}
+        {/* sub region options*/}
         {subRegion.length > 0 && (
           <select
             className={`p-2 px-4 rounded cursor-pointer
