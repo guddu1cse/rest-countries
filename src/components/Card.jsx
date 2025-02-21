@@ -1,6 +1,9 @@
 import React from "react";
+import { useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
 
-const Card = ({ country, dark }) => {
+const Card = ({ country }) => {
+  const { dark } = useContext(ThemeContext);
   return (
     <div
       className={`w-[100%] h-[100%] flex flex-col justify-center ${

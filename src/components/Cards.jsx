@@ -1,6 +1,9 @@
 import React from "react";
 import Card from "./Card";
-const Cards = ({ countries, dark }) => {
+import { useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
+const Cards = ({ countries }) => {
+  const { dark } = useContext(ThemeContext);
   return (
     <div
       className={`w-[100%] flex items-center justify-center
@@ -18,7 +21,7 @@ const Cards = ({ countries, dark }) => {
       >
         {countries.map((country) => (
           <div key={country.name.common}>
-            <Card country={country} dark={dark} />
+            <Card country={country} />
           </div>
         ))}
       </div>

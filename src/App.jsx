@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
 import Cards from "./components/Cards";
 import { api } from "./config";
+import { ThemeContext } from "./components/ThemeContext";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -33,21 +34,22 @@ const App = () => {
   };
 
   return (
-    <div
-      className={`w-screen h-screen flex flex-col overflow-x-hidden ${
-        dark ? "bg-[#1E2939]" : ""
-      }`}
-    >
-      <Navbar setDark={setDark} dark={dark} />
-      <SearchBar
-        dark={dark}
-        setCountries={setCountries}
-        data={data}
-        region={region}
-        countries={countries}
-      />
-      <Cards countries={countries} dark={dark} />
-    </div>
+    <ThemeContext.Provider value={{ dark, setDark }}>
+      <div
+        className={`w-screen h-screen flex flex-col overflow-x-hidden ${
+          dark ? "bg-[#1E2939]" : ""
+        }`}
+      >
+        <Navbar />
+        <SearchBar
+          setCountries={setCountries}
+          data={data}
+          region={region}
+          countries={countries}
+        />
+        <Cards countries={countries} />
+      </div>
+    </ThemeContext.Provider>
   );
 };
 

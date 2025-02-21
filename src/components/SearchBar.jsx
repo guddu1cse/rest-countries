@@ -1,13 +1,15 @@
 import React, { use } from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
 
-const SearchBar = ({ dark, countries, setCountries, data, region }) => {
+const SearchBar = ({ countries, setCountries, data, region }) => {
   const [search, setSearch] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("none");
   const [subRegion, setSubRegion] = useState([]);
   const [selectedSubRegion, setSelectedSubRegion] = useState("none");
   const [sort, setSort] = useState(false);
   const [sortBy, setSortBy] = useState("population");
+  const { dark } = useContext(ThemeContext);
 
   useEffect(() => {
     setCountries((prevState) =>
@@ -98,8 +100,8 @@ const SearchBar = ({ dark, countries, setCountries, data, region }) => {
           onChange={(e) => setSortBy(e.target.value)}
         >
           <option value="population">Sort By</option>
-          <option value="population">Population</option>
           <option value="area">Area</option>
+          <option value="population">Population</option>
         </select>
 
         <button

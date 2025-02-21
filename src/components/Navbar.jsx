@@ -1,6 +1,9 @@
 import React from "react";
+import { ThemeContext } from "./ThemeContext";
+import { useContext } from "react";
 
-const Navbar = ({ dark, setDark }) => {
+const Navbar = () => {
+  const { dark, setDark } = useContext(ThemeContext);
   return (
     <div
       className={`flex justify-between items-center p-4 sm:px-20 ${
