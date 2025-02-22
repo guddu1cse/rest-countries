@@ -1,14 +1,17 @@
 import React from "react";
 import { useContext } from "react";
 import { ThemeContext } from "./ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ country }) => {
   const { dark } = useContext(ThemeContext);
+  const navigate = useNavigate();
   return (
     <div
       className={`w-[100%] h-[100%] flex flex-col justify-center ${
         dark ? "bg-[#1E2939]" : ""
       }`}
+      onClick={() => navigate(`/rest-countries/countries/${country.id}`)}
     >
       <img src={country.flags.png} alt="" className="w-[100%] h-[50%]" />
       <p className={`text-xl font-bold px-5 ${dark ? "text-white" : ""}`}>
