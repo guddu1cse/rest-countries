@@ -19,8 +19,8 @@ const Country = ({ countries }) => {
   const { dark } = useContext(ThemeContext);
 
   useEffect(() => {
-    console.log(country);
-  }, [country]);
+    setCountry(allCountries[id]);
+  }, [country, id, allCountries]);
 
   const getNativeName = (country) => {
     const entries = Object.values(country.name.nativeName);
@@ -30,8 +30,8 @@ const Country = ({ countries }) => {
 
   const getBorders = (borders) => {
     return borders.map((border) => {
-      return allCountries.find((country) => country.cca3 === border).name
-        .common;
+      const country = allCountries.find((country) => country.cca3 === border);
+      return { id: country.id, name: country.name.common };
     });
   };
 
@@ -97,10 +97,29 @@ const Country = ({ countries }) => {
             </div>
           </div>
           <div className="flex gap-3 relative top-[-100px]">
-            <h1 className={` ${dark ? "text-white" : ""}`}>
-              <span className="font-bold">Border Countries :</span>{" "}
-              {getBorders(country.borders).join(", ")}
-            </h1>
+            {country.borders ? (
+              <h1 className={` ${dark ? "text-white" : ""}`}>
+                <span className="font-bold">Border Countries :</span>{" "}
+                {getBorders(country.borders).map((border) => (
+                  <button
+                    onClick={() =>
+                      navigate(`/rest-countries/countries/${border.id}`)
+                    }
+                    className={` border border-gray-300 m-1  p-1 rounded-md ${
+                      dark
+                        ? "text-white bg-[#2E2939]"
+                        : "bg-gray-200 text-[#2E2939]"
+                    }`}
+                  >
+                    {border.name}
+                  </button>
+                ))}
+              </h1>
+            ) : (
+              <h1 className={` text-3xl ${dark ? "text-white" : ""}`}>
+                No borders
+              </h1>
+            )}
           </div>
         </div>
       </div>
